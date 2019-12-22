@@ -1,5 +1,5 @@
 {
-  "name": "eslint-config-ntgn81",
+  "name": "@ntgn81/eslint-config",
   "version": "1.0.1",
   "description": "Eslint config stuff",
   "main": "index.js",
@@ -11,14 +11,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ntgn81/eslint-config-ntgn81.git"
+    "url": "git+https://github.com/ntgn81/eslint-config.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ntgn81/eslint-config-ntgn81/issues"
+    "url": "https://github.com/ntgn81/eslint-config/issues"
   },
-  "homepage": "https://github.com/ntgn81/eslint-config-ntgn81#readme",
+  "homepage": "https://github.com/ntgn81/eslint-config#readme",
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
