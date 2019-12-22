@@ -1,0 +1,36 @@
+version: 2
+
+jobs:
+  deploy:
+    docker:
+      - image: circleci/node:8.16.1
+    steps:
+      - checkout
+      - run:
+          name: Remove main package version for cache key
+          command: jq 'del(.version)' package-lock.json > package-lock-wo-version.json
+      - restore_cache:
+          key: node-modules-{{ checksum "package-lock-wo-version.json" }}
+      - run: if [ ! -d ./node_modules ]; then npm install --no-save; fi
+      - save_cache:
+          key: node-modules-{{ checksum "package-lock-wo-version.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ./.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - deploy:
+          context: npm-publish
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
